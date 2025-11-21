@@ -58,13 +58,11 @@ function App() {
 
   function calcPrices() {
     let total = 0;
-    let tax = 0;
-    let totalCost = 0;
     cart.forEach((item) => {
       total += (item.salePrice || item.originalPrice) * item.quantity;
-      tax += (total * 0.1)
-      totalCost += (total + tax)
     });
+    const tax = total * 0.0875;
+    const totalCost = total + tax;
     return {
       total,
       tax,
@@ -90,7 +88,7 @@ function App() {
                 cart={cart}
                 updateCart={updateCart}
                 removeItem={removeItem}
-                totals={calcPrices()}
+                total={calcPrices()}
               />
             }
           />
